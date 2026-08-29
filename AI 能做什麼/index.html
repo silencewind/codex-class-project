@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="認識 Codex，以及 AI 如何協助老師備課、溝通與班級經營。">
+  <title>AI 能做什麼｜Codex 自我介紹</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10100f;
+      --surface: #191815;
+      --surface-2: #22201b;
+      --text: #f7f0e5;
+      --muted: #bdb4a7;
+      --accent: #f3aa62;
+      --accent-soft: #ffd7a8;
+      --green: #9fc98e;
+      --red: #e8998f;
+      --line: #39342c;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(243, 170, 98, .13), transparent 28rem),
+        radial-gradient(circle at 5% 45%, rgba(159, 201, 142, .07), transparent 25rem),
+        var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Noto Sans TC", "PingFang TC", sans-serif;
+      line-height: 1.75;
+    }
+    a { color: inherit; }
+    .wrap { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+    .skip-link { position: absolute; left: -999px; }
+    .skip-link:focus { left: 16px; top: 12px; z-index: 10; padding: 8px 12px; background: var(--accent); color: #21160c; }
+
+    header { padding: 24px 0; }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: .06em; text-decoration: none; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 22px; color: var(--muted); font-size: .92rem; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--accent-soft); }
+
+    .hero { min-height: 70vh; display: grid; grid-template-columns: 1.2fr .8fr; gap: 64px; align-items: center; padding: 72px 0 96px; }
+    .eyebrow { color: var(--accent); font-weight: 750; text-transform: uppercase; letter-spacing: .15em; font-size: .82rem; }
+    h1 { margin: 14px 0 24px; max-width: 760px; font-size: clamp(3rem, 8vw, 6.7rem); line-height: .98; letter-spacing: -.06em; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .lead { max-width: 700px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .button { display: inline-block; padding: 11px 18px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; font-weight: 700; }
+    .button.primary { border-color: var(--accent); background: var(--accent); color: #20150c; }
+    .hero-card { position: relative; padding: 30px; border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(145deg, var(--surface-2), var(--surface)); box-shadow: 0 30px 80px rgba(0,0,0,.35); transform: rotate(2deg); }
+    .hero-card::before { content: ""; position: absolute; width: 76px; height: 18px; top: -9px; left: 50%; background: rgba(243,170,98,.75); transform: translateX(-50%) rotate(-3deg); }
+    .prompt { margin: 0; color: var(--muted); font-family: ui-monospace, monospace; font-size: .92rem; }
+    .prompt strong { display: block; margin-top: 16px; color: var(--text); font-family: inherit; font-size: 1.06rem; }
+
+    section { padding: 88px 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: .65fr 1.35fr; gap: 40px; margin-bottom: 42px; }
+    h2 { margin: 0; font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.05; letter-spacing: -.045em; }
+    .section-intro { margin: 0; color: var(--muted); font-size: 1.08rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .card { padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: rgba(25,24,21,.76); }
+    .number { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(243,170,98,.13); color: var(--accent); font-weight: 800; }
+    h3 { margin: 18px 0 8px; font-size: 1.35rem; }
+    .card p { margin: 0; color: var(--muted); }
+    .example { margin-top: 20px !important; padding-top: 16px; border-top: 1px solid var(--line); }
+    .example b { color: var(--accent-soft); }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .feature { min-height: 280px; padding: 24px; border-radius: 18px; background: var(--surface-2); }
+    .feature .icon { font-size: 1.8rem; }
+    .feature h3 { margin-top: 50px; }
+    .feature p { color: var(--muted); font-size: .94rem; }
+    .feature small { display: block; margin-top: 18px; color: var(--accent-soft); line-height: 1.55; }
+
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .list-panel { padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); }
+    .list-panel h3 { margin-top: 0; }
+    .list-panel ul { margin: 0; padding: 0; list-style: none; }
+    .list-panel li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; padding: 14px 0; border-top: 1px solid var(--line); color: var(--muted); }
+    .list-panel li:first-child { border-top: 0; }
+    .do .mark { color: var(--green); }
+    .dont .mark { color: var(--red); }
+    .formula { margin-top: 28px; padding: 24px; border-left: 3px solid var(--accent); background: rgba(243,170,98,.08); }
+    .formula code { color: var(--accent-soft); white-space: normal; font-size: 1rem; }
+
+    footer { padding: 40px 0 56px; color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 24px; }
+    footer a { color: var(--accent-soft); }
+
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .hero, .section-head { grid-template-columns: 1fr; }
+      .hero { padding-top: 42px; gap: 44px; }
+      .hero-card { transform: none; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(calc(100% - 28px), var(--max)); }
+      .grid, .feature-grid, .do-dont { grid-template-columns: 1fr; }
+      section { padding: 64px 0; }
+      footer .wrap { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="wrap">
+    <nav aria-label="主要導覽">
+      <a class="brand" href="#">CODEX<span>✦</span></a>
+      <div class="nav-links">
+        <a href="#abilities">我能做什麼</a><a href="#features">內建功能</a><a href="#prompting">下指令秘訣</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="hero wrap">
+      <div>
+        <div class="eyebrow">你的 AI 教學協作夥伴</div>
+        <h1>AI 能<br><em>做什麼？</em></h1>
+        <p class="lead">嗨，我是 Codex，是 OpenAI 打造的 AI 助手。我能理解需求、整理資訊、撰寫與修改內容，也能直接協助完成數位作品。把重複工作交給我，把更多時間留給學生。</p>
+        <div class="actions"><a class="button primary" href="#abilities">開始認識我</a><a class="button" href="#prompting">學會下指令</a></div>
+      </div>
+      <aside class="hero-card" aria-label="指令示範">
+        <p class="prompt">老師說：<strong>「請為國小五年級設計一堂 40 分鐘的水循環課，包含暖身、探究活動、形成性評量與差異化提示。」</strong></p>
+        <p class="prompt" style="margin-top:24px">Codex 回應：<strong style="color:var(--accent-soft)">我會先整理一份可直接上課、也方便調整的完整教案。✦</strong></p>
+      </aside>
+    </div>
+
+    <section id="abilities">
+      <div class="wrap">
+        <div class="section-head"><h2>從想法到完成，<br>一起動手做。</h2><p class="section-intro">我不只是回答問題，也能依照年級、領域、時間與學生需求，協助你產出可編輯的初稿。重要內容仍請由老師依教學現場與校方規範確認。</p></div>
+        <div class="grid">
+          <article class="card"><span class="number">01</span><h3>備課與出題</h3><p>規劃教學流程、設計題目、提供解析，還能調整難度與題型比例。</p><p class="example"><b>教學例：</b>依三個學習目標，產出八年級數學小考與雙向細目表。</p></article>
+          <article class="card"><span class="number">02</span><h3>教材與簡報製作</h3><p>把複雜概念轉成講義架構、投影片文案、學習單或互動網頁。</p><p class="example"><b>教學例：</b>將課文整理成 10 張簡報，附提問、圖像建議與課後練習。</p></article>
+          <article class="card"><span class="number">03</span><h3>班級經營</h3><p>一起構思班規、活動、正向行為支持，以及具體可行的處理話術。</p><p class="example"><b>教學例：</b>為常忘記交作業的班級設計兩週集點挑戰與每日檢核表。</p></article>
+          <article class="card"><span class="number">04</span><h3>家長與行政溝通</h3><p>依情境調整語氣，草擬清楚、尊重且有下一步的訊息與文件。</p><p class="example"><b>教學例：</b>撰寫校外教學通知，整理日期、費用、攜帶物品與回條資訊。</p></article>
+          <article class="card"><span class="number">05</span><h3>評量與回饋</h3><p>建立規準、整理觀察紀錄，將抽象評語改寫為具體成長建議。</p><p class="example"><b>教學例：</b>為口頭報告製作四級量規，並生成溫和、可行動的回饋句型。</p></article>
+          <article class="card"><span class="number">06</span><h3>資料整理與創意發想</h3><p>摘要資料、比較方案、腦力激盪，協助你更快找到可實施的方向。</p><p class="example"><b>教學例：</b>依學生閱讀偏好，發想五種晨讀活動並列出所需時間與材料。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head"><h2>不只對話，<br>還有這些工具。</h2><p class="section-intro">依你使用的 Codex 版本、工作環境與權限，可用功能可能不同；需要時，告訴我想完成的成果，我會選擇合適方式協助。</p></div>
+        <div class="feature-grid">
+          <article class="feature"><div class="icon">✦</div><h3>畫圖</h3><p>產生或編修教學所需的圖片與視覺素材。</p><small>情境：製作一張無文字的海洋食物鏈情境圖，作為課堂觀察素材。</small></article>
+          <article class="feature"><div class="icon">◷</div><h3>Automations</h3><p>把固定任務排入時程，在合適時間自動執行。</p><small>情境：每週五提醒整理下週教學待辦，並產生備課檢核清單。</small></article>
+          <article class="feature"><div class="icon">◇</div><h3>Skills</h3><p>依標準流程執行特定任務，讓成果更一致、可重複。</p><small>情境：使用既定的教案 Skill，固定輸出目標、活動、評量與差異化策略。</small></article>
+          <article class="feature"><div class="icon">⌁</div><h3>Plugins</h3><p>透過外掛擴充 Codex，連接特定工具或團隊工作流程。</p><small>情境：使用校方核准的外掛串接內容庫，快速找到授權教材。（請遵守校方與個資規範。）</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prompting">
+      <div class="wrap">
+        <div class="section-head"><h2>好指令，讓答案<br>更貼近現場。</h2><p class="section-intro">不用學艱深術語。說清楚「對象、目標、限制與輸出格式」，再用一兩輪回饋調整，就能得到更實用的成果。</p></div>
+        <div class="do-dont">
+          <div class="list-panel do"><h3><span style="color:var(--green)">DO</span> 建議這樣做</h3><ul>
+            <li><span class="mark">✓</span><span>交代年級、科目、學生先備知識與學習需求。</span></li>
+            <li><span class="mark">✓</span><span>說明目標、課堂時間、材料與不能改變的限制。</span></li>
+            <li><span class="mark">✓</span><span>指定成果格式，例如表格、逐字稿、題數或字數。</span></li>
+            <li><span class="mark">✓</span><span>提供一個喜歡的範例，並要求我標出假設與待確認處。</span></li>
+          </ul></div>
+          <div class="list-panel dont"><h3><span style="color:var(--red)">DON'T</span> 避免這樣做</h3><ul>
+            <li><span class="mark">×</span><span>不要只說「幫我做教案」，卻沒有對象與學習目標。</span></li>
+            <li><span class="mark">×</span><span>不要貼上學生姓名、聯絡方式、健康紀錄等敏感個資。</span></li>
+            <li><span class="mark">×</span><span>不要未經查核就直接採用答案；事實、答案與引用都應複核。</span></li>
+            <li><span class="mark">×</span><span>不要一次塞入互相衝突的要求；可以分階段一起完成。</span></li>
+          </ul></div>
+        </div>
+        <div class="formula"><b>萬用指令公式：</b> <code>請為［對象］完成［任務］，目標是［目標］；限制為［時間／材料／語氣］，請用［格式］輸出，並標示需要我確認的內容。</code></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span>和 Codex 一起，把好點子變成可用的教學成果。</span><a href="#">回到頁首 ↑</a></div></footer>
+</body>
+</html>
